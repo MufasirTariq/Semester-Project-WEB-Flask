@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LCID-Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+         body {
+            background-color: #000000;
+            color: #343434;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button-container a {
+            margin: 0 10px;
+            border-radius: 5px;
+        }
+
+        .form-container {
+            display: none;
+        }
+
+        .form-container.show {
+            display: block;
+        }
+
+        .uploaded-image {
+            max-width: 200px;
+            max-height: 200px;
+            margin-top: 50px;
+        }
+
+        .center-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin-top:80px;
+
+        }
+        .logo-img {
+            max-width: 400px;
+            margin-bottom: 0px;
+            margin-top: 0px;
+        }
+
+    .form-container {
+        background-color: #343a40;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .form-container h2 {
+        color: #ffffff;
+        border-bottom: 2px solid #ffffff;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .form-container form {
+        margin-bottom: 10px;
+
+    }
+
+    .form-container label {
+        font-weight: bold;
+        color: #ffffff;
+    }
+
+    .form-container .form-check-label {
+        font-weight: normal;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="password"],
+    .form-container input[type="email"],
+    .form-container select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+        color: #333333;
+        margin-bottom: 10px;
+    }
+
+    .form-container button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #36454F;
+        color: #ffffff;
+        cursor: pointer;
+    }
+
+    .form-container button:hover {
+        background-color: #0056b3;
+    }
+    .navbar {
+            background-color: #343a40;
+            padding: 10px 110px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li {
+            margin: 0 15px;
+        }
+
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .navbar img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .navbar img.email-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 5px;
+        }
+
+        .navbar img.whatsapp-icon {
+            width: 38px;
+            height: 38px;
+            margin-right: 5px;
+        }
+        .navbar img.fb-icon {
+            width: 38px;
+            height: 38px;
+            margin-right: 5px;
+        }
+        .navbar img.twitter-icon {
+            width: 43px;
+            height: 38px;
+            margin-right: 5px;
+        }
+
+        .navbar img.LCID-Logo {
+            width: 70px;
+            height: 50px;
+            margin-right: 75px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var delMsg = "{{del_msg}}";
+            if (delMsg) {
+                alert(delMsg);
+            }
+        };
+
+        function showForm(formId)
+        {
+            var forms = document.querySelectorAll('.form-container');
+            forms.forEach(function(form)
+            {
+                form.classList.remove('show');
+            });
+
+            var selectedForm = document.getElementById(formId);
+            selectedForm.classList.add('show');
+        }
+         function displayVictimImage(event) {
+        var pre
+        view = document.getElementById("victim-image");
+        var file = event.target.files[0];
+
+        if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function() {
+                preview.src = reader.result;
+            }
+
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+    }
+
+         function displayImage(event) {
+        var preview = document.getElementById("inspector-image");
+        var file = event.target.files[0];
+
+        if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function() {
+                preview.src = reader.result;
+            }
+
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+    }
+    </script>
+</head>
+<body>
+     <nav class="navbar">
+        <ul>
+            <li><a href="#">More about us</a></li>
+            <li>
+                <a href="#">
+                    <img class="fb-icon" src="/static/fb-icon.png" alt="Facebook">
+                    <img class="whatsapp-icon" src="/static/insta-logo.png" alt="Instagram">
+                    <img class="twitter-icon" src="/static/twitter-logo.png" alt="Twitter">
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <img class="LCID-Logo" src="/static/nav-lcid-logo.png" alt="LCID-Logo">
+            </li>
+        </ul>
+        <ul>
+            <li><a href="#">Contact us</a></li>
+            <li>
+                <a href="#">
+                    <img class="whatsapp-icon" src="/static/whatsapp-icon.png" alt="WhatsApp">
+                    <img class="email-icon" src="/static/email-icon.png" alt="Email">
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container center-container">
+        <img src="/static/LCID-Logo.png" alt="Logo" class="logo-img">
+
+        <div class="button-container mt-4">
+            <a href="#" class="btn btn-dark" onclick="showForm('login-form')">Login</a>
+            <div class="btn-group">
+                <a href="#" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">Register</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" onclick="showForm('victim-form')">Victim</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="showForm('inspector-form')">Inspector</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="del-msg"></div>
+        <div class="form-container mt-4" id="login-form">
+            <h2 class="text-center mb-4">Login</h2>
+            <form action="/LoginForm" method="POST">
+                <div class="mb-3">
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign-in</button>
+            </form>
+        </div>
+
+
+<div class="form-container mt-4" id="victim-form">
+            <h2 class="text-center mb-4">Victim Registration</h2>
+            <form action="/VictimForm" method="POST" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
+                </div>
+                <div>
+                    <input type="password" name="password" class="form-control" placeholder="Enter password" required>
+                </div>
+                <div class="mb-3">
+                    <input type="email" name="email" class="form-control" placeholder="Enter email e.g abc@lcid.com" required>
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="phone" class="form-control" placeholder="Enter contact number" required>
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="address" class="form-control" placeholder="Enter your current address" required>
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="dob" class="form-control" placeholder="Enter your birth-date" required>
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="cnic" class="form-control" required placeholder="Enter your current Nationality">
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="job" class="form-control" placeholder="Enter Occupation" required>
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="emergency" class="form-control" placeholder="Enter emergency contact" required>
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">Gender:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="Male" id="vic-gender-male">
+                        <label class="form-check-label" for="gender-male">Male</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="Female" id="vic-gender-female">
+                        <label class="form-check-label" for="gender-female">Female</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="Others" id="vic-gender-others">
+                        <label class="form-check-label" for="gender-others">Others</label>
+                    </div>
+                    <div class="mb-3">
+                    <img id="victim-image" src="" alt="Preview" style="max-width: 200px; max-height: 200px;">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Profile Picture:</label>
+                    <input type="file" name="vic-pic" accept="image/*" onchange="displayVictimImage(event)" class="form-control">
+                </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+
+         <div class="form-container mt-4" id="inspector-form">
+            <h2 class="text-center mb-4">Inspector Registration</h2>
+            <form action="/InspectorForm" method="POST" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" name="password" class="form-control" placeholder="Enter password" required>
+                </div>
+                <div class="mb-3">
+                    <input type="email" name="email" class="form-control" placeholder="Enter your email e.g abc@lcid.com" required>
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="phone" class="form-control" required placeholder="Enter your contact number">
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="dob"  class="form-control" placeholder=" Birth-date e.g DD/MM/YYYY">
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">Education:</label>
+                    <select name="edu" class="form-select">
+                        <option value="">Select</option>
+                        <option value="Undergraduate">Undergraduate</option>
+                        <option value="Graduate">Graduate</option>
+                        <option value="Criminal Justice">Criminal Justice</option>
+                        <option value="Law Enforcement">Law Enforcement</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="exp"  class="form-control" placeholder="Enter your year of experience">
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">Inspector Type:</label>
+                    <select name="kind" class="form-select">
+                        <option value="">Select</option>
+                        <option value="HomicideInspector">Homicide Inspector</option>
+                        <option value="RobberyInspector">Robbery/Burglary Inspector</option>
+                        <option value="NarcoticsInspector">Narcotics Inspector</option>
+                        <option value="CybercrimeInspector">Cybercrime Inspector</option>
+                        <option value="FinancialCrimesInspector">Financial Crimes Inspector</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">Gender:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="Male" id="gender-male">
+                        <label class="form-check-label" for="gender-male">Male</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="Female" id="gender-female">
+                        <label class="form-check-label" for="gender-female">Female</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="Others" id="gender-others">
+                        <label class="form-check-label" for="gender-others">Others</label>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Profile Picture:</label>
+                        <input type="file" name="ins-pic" accept="image/*" onchange="displayImage(event)" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <img id="inspector-image" src="" alt="Preview" style="max-width: 200px; max-height: 200px;">
+                    </div>
+
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
